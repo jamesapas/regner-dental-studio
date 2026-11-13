@@ -1,6 +1,6 @@
 # Regner Dental Studio
 
-Responsive one-page dental clinic website built with Next.js App Router, TypeScript, Tailwind CSS, and a Supabase-backed appointment API.
+Responsive one-page dental clinic website built with Next.js App Router, TypeScript, Tailwind CSS, and Web3Forms for appointment requests.
 
 ## Run locally
 
@@ -10,12 +10,14 @@ Responsive one-page dental clinic website built with Next.js App Router, TypeScr
 
 ## Enable appointment submissions
 
-1. Create a Supabase project and run `supabase.sql` in the SQL Editor.
-2. Copy `.env.example` to `.env.local` and fill in `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` from Supabase project settings.
-3. Restart the dev server. Requests will be stored in the `appointments` table with `pending` status. Appointment confirmation must be handled manually; no email notifications or automatic confirmation are included.
-4. Set the same two variables in your Vercel project settings when deploying.
+1. Create a free account at https://web3forms.com using the inbox that should receive appointment requests, and copy the access key.
+2. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_WEB3FORMS_KEY` to that access key.
+3. Restart the dev server. Each request is emailed to the inbox linked to the access key, with the patient's email set as reply-to. Appointment confirmation is handled manually by replying.
+4. Set the same variable in your Vercel project settings when deploying.
 
-**Security:** Never expose the service role key in client code or commit `.env.local`. Before public launch, add rate limiting and anti-spam protection to the API, a privacy notice/consent flow appropriate to your jurisdiction, and a secure staff workflow for accessing appointment data.
+To change the receiving inbox, create a new Web3Forms access key for that email and replace the value.
+
+**Security:** Never commit `.env.local`. Before public launch, add a privacy notice/consent flow appropriate to your jurisdiction.
 
 ## Before publishing
 
